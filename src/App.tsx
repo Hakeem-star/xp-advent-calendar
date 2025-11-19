@@ -1,3 +1,4 @@
+import { Day } from "./Day";
 import "./App.css";
 import { useEffect } from "react";
 import { createSnow, showSnow } from "pure-snow.js";
@@ -6,17 +7,6 @@ import { createSnow, showSnow } from "pure-snow.js";
 const adventDays = [
   22, 5, 13, 3, 1, 11, 2, 20, 16, 8, 14, 9, 24, 10, 6, 15, 7, 18, 4, 12, 17, 23,
   21, 19,
-];
-
-const guests = [
-  "Adult-Santa-Suit-2024_spygji.png",
-  "naughtyelf.webp",
-  "Elf-with-hands-in-the-air-cartoon-white-b-98729124.png",
-  "rudolf-clipart-xl.png",
-  "elf-fluff.png",
-  "rudolf-goofy.webp",
-  "elf-trad.png",
-  "santa-with-sack.png",
 ];
 
 const isDecember = new Date().getMonth() === 11;
@@ -77,7 +67,6 @@ function App() {
               position: "absolute",
               width: "30%",
               aspectRatio: "1/1",
-              backdropFilter: "blur(5px)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -107,61 +96,13 @@ function App() {
               const isPastCurrentDay = currentDate > currentDayNumber;
               const isCurrentDay = currentDate === currentDayNumber;
               return (
-                <div
-                  className="day-container"
+                <Day
                   key={index}
-                  style={{
-                    color: "red",
-                    fontSize: "2rem",
-                    width: "100%",
-                    aspectRatio: "1/1",
-                    outline: isCurrentDay
-                      ? "1px solid gold"
-                      : isPastCurrentDay
-                      ? "1px solid red"
-                      : "1px solid blue",
-                    borderRadius: "1rem",
-                    opacity: [9, 10, 15, 16, 21, 22].includes(index + 1)
-                      ? 0
-                      : 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    alignSelf: "center",
-                    cursor: [9, 10, 15, 16, 21, 22].includes(index + 1)
-                      ? "default"
-                      : "pointer",
-                    // mixBlendMode: "difference",
-                    backdropFilter: `blur(30px) brightness(10.2) drop-shadow(4px 4px 10px ${
-                      index % 2 === 0 ? "red" : "blue"
-                    })`,
-                    filter: "drop-shadow(4px 4px 10px black)",
-                    // background: "white",
-                  }}
-                >
-                  {currentDayNumber}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      width: "100%",
-                      height: "100%",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      className="guest-image"
-                      style={{
-                        backgroundImage: 'url("./guests/elf-fluff.png")',
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        backgroundSize: "contain",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    />
-                  </div>
-                </div>
+                  index={index}
+                  isCurrentDay={isCurrentDay}
+                  isPastCurrentDay={isPastCurrentDay}
+                  currentDayNumber={currentDayNumber}
+                />
               );
             })}
           </div>
