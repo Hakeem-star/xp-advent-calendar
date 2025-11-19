@@ -3,12 +3,6 @@ import "./App.css";
 import { useEffect } from "react";
 import { createSnow, showSnow } from "pure-snow.js";
 
-// days to render
-const adventDays = [
-  22, 5, 13, 3, 1, 11, 2, 20, 16, 8, 14, 9, 24, 10, 6, 15, 7, 18, 4, 12, 17, 23,
-  21, 19,
-];
-
 const isDecember = new Date().getMonth() === 11;
 const currentDate = new Date().getUTCDate();
 // const isPastCurrentDay = currentDate > adventDays[currentDate - 1];
@@ -16,6 +10,14 @@ const currentDate = new Date().getUTCDate();
 // const unopened;
 
 function App() {
+  // days to render
+  const adventDays = [
+    22, 5, 13, 3, 1, 11, 2, 20, 16, 8, 14, 9, 24, 10, 6, 15, 7, 18, 4, 12, 17,
+    23, 21, 19,
+  ];
+
+  const disabledDays = [9, 10, 15, 16, 21, 22];
+
   useEffect(() => {
     createSnow();
     showSnow(true);
@@ -89,10 +91,9 @@ function App() {
             }}
           >
             {Array.from({ length: 30 }).map((_, index) => {
-              const currentDayNumber =
-                (![9, 10, 15, 16, 21, 22].includes(index + 1) &&
-                  adventDays.shift()) ||
-                0;
+              const isDisabled = disabledDays.includes(index + 1);
+
+              const currentDayNumber = (!isDisabled && adventDays.shift()) || 0;
               const isPastCurrentDay = currentDate > currentDayNumber;
               const isCurrentDay = currentDate === currentDayNumber;
               return (

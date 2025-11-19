@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const guests = [
   "Adult-Santa-Suit-2024_spygji.png",
@@ -29,6 +30,10 @@ export function Day({
     : isPastCurrentDay
     ? "rgba(255,255,255, 0.2)"
     : "white";
+  const navigate = useNavigate();
+
+  const isDisabled = [9, 10, 15, 16, 21, 22].includes(index + 1);
+
   return (
     <div
       onMouseEnter={() => {
@@ -38,6 +43,7 @@ export function Day({
       className="day-container"
       key={index}
       style={{
+        pointerEvents: isDisabled || !isCurrentDay ? "none" : "auto",
         color: color,
         fontSize: "4rem",
         width: "100%",
@@ -69,6 +75,9 @@ export function Day({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+        }}
+        onClick={() => {
+          navigate(`/${currentDayNumber}`);
         }}
       >
         <p>{currentDayNumber}</p>
