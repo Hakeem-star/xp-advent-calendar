@@ -31,7 +31,7 @@ const DayPage = () => {
   const [visibleActivityScreen, setVisibleActivityScreen] = useState<
     string | undefined
   >("");
-  console.log({ visibleActivityScreen });
+
   const handleCelebrate = (index: number) => {
     setShowConfetti(true);
     setOpenedBoxes((openedBoxes) => {
@@ -113,6 +113,8 @@ const DayPage = () => {
                   width: "256px",
                   height: "256px",
                   cursor: "pointer",
+                  filter:
+                    "hue-rotate(120deg) saturate(0.5) brightness(1.1) contrast(1.1)",
                 }}
               />
               <div
@@ -133,6 +135,7 @@ const DayPage = () => {
                   width: "256px",
                   height: "256px",
                   cursor: "pointer",
+                  filter: "hue-rotate(270deg) saturate(0.5) brightness(1.1)",
                 }}
               />
               <div
@@ -143,17 +146,20 @@ const DayPage = () => {
                   width: "256px",
                   height: "256px",
                   cursor: "pointer",
+                  filter:
+                    "hue-rotate(360deg) saturate(0.5) contrast(1.2) brightness(1.1) sepia(0.2)",
                 }}
               />
             </div>
           ) : visibleActivityScreen === "Game" ? (
             <GameScreen
+              id={id!}
               visibleActivityScreen={visibleActivityScreen}
               setVisibleActivityScreen={setVisibleActivityScreen}
             />
           ) : (
             <QuestionAnswerScreen
-              day={id!}
+              id={id!}
               visibleActivityScreen={visibleActivityScreen}
               setVisibleActivityScreen={setVisibleActivityScreen}
             />
@@ -167,28 +173,26 @@ const DayPage = () => {
 export default DayPage;
 
 function QuestionAnswerScreen({
-  day,
+  id,
   visibleActivityScreen,
   setVisibleActivityScreen,
 }: {
-  day: string;
+  id: string;
   visibleActivityScreen: string;
   setVisibleActivityScreen: React.Dispatch<
     React.SetStateAction<string | undefined>
   >;
 }) {
   const dayActivity = activities.find(
-    (activity) => activity.id === parseInt(day)
+    (activity) => activity.id === parseInt(id)
   );
   const val =
     dayActivity?.[
       visibleActivityScreen.toLowerCase() as keyof typeof dayActivity
     ];
-  console.log({ val, visibleActivityScreen, dayActivity });
 
   const question = val?.q;
   const answers = [val?.a].flat();
-  console.log({ question, answers });
 
   const [answer, setAnswer] = useState<string[]>([]);
 
@@ -283,14 +287,24 @@ function QuestionAnswerScreen({
 }
 
 function GameScreen({
+  id,
   visibleActivityScreen,
   setVisibleActivityScreen,
 }: {
+  id: string;
   visibleActivityScreen: string;
   setVisibleActivityScreen: React.Dispatch<
     React.SetStateAction<string | undefined>
   >;
 }) {
+  const dayActivity = activities.find(
+    (activity) => activity.id === parseInt(id)
+  );
+  const val =
+    dayActivity?.[
+      visibleActivityScreen.toLowerCase() as keyof typeof dayActivity
+    ];
+
   return (
     <div
       style={{
@@ -346,9 +360,11 @@ function GameScreen({
           style={{
             fontSize: "3.75rem",
           }}
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={val?.link}
         >
-          sdcvsdv
+          {val?.name}
         </a>
       </div>
     </div>

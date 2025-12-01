@@ -3,7 +3,7 @@ export const activities = [
     id: 1,
     joke: {
       q: "What do you call Santa when he stops moving?",
-      a: ["Santa Pause!", "Nooo"],
+      a: ["Santa Pause!"],
     },
     riddle: {
       q: "I'm red and white and jolly all around, in December I can always be found. Who am I?",
