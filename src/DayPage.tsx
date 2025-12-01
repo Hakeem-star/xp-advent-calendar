@@ -2,8 +2,9 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router";
 import { createSnow, showSnow } from "pure-snow.js";
 import ConfettiComponent from "./Confetti";
+import { activities } from "./activities";
 
-const options = ["Game", "Quiz", "Jokes", "Riddles"];
+const options = ["Game", "Quiz", "Joke", "Riddle"];
 
 const DayPage = () => {
   const params = useParams();
@@ -44,6 +45,10 @@ const DayPage = () => {
       setVisibleActivityScreen(shuffledOptions[index - 1]);
     }, 700);
   };
+
+  if (!id) {
+    return <div>Invalid day</div>;
+  }
 
   return (
     <div>
@@ -148,6 +153,7 @@ const DayPage = () => {
             />
           ) : (
             <QuestionAnswerScreen
+              day={id!}
               visibleActivityScreen={visibleActivityScreen}
               setVisibleActivityScreen={setVisibleActivityScreen}
             />
@@ -161,23 +167,28 @@ const DayPage = () => {
 export default DayPage;
 
 function QuestionAnswerScreen({
+  day,
   visibleActivityScreen,
   setVisibleActivityScreen,
 }: {
+  day: string;
   visibleActivityScreen: string;
   setVisibleActivityScreen: React.Dispatch<
     React.SetStateAction<string | undefined>
   >;
 }) {
-  const jokes = [
-    {
-      q: "What do you call a bear with no teeth?",
-      a: ["grizzly", "grizzly bear"],
-    },
-  ];
-  const joke = jokes[0];
-  const question = joke.q;
-  const answers = [joke.a].flat();
+  const dayActivity = activities.find(
+    (activity) => activity.id === parseInt(day)
+  );
+  const val =
+    dayActivity?.[
+      visibleActivityScreen.toLowerCase() as keyof typeof dayActivity
+    ];
+  console.log({ val, visibleActivityScreen, dayActivity });
+
+  const question = val?.q;
+  const answers = [val?.a].flat();
+  console.log({ question, answers });
 
   const [answer, setAnswer] = useState<string[]>([]);
 
@@ -188,9 +199,7 @@ function QuestionAnswerScreen({
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown, {
-      once: true,
-    });
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
