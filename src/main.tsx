@@ -9,8 +9,8 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/:dayId" element={<DayPage />} />
+        <Route path="/xp-advent-calendar" element={<App />} />
+        <Route path="/xp-advent-calendar/:dayId" element={<DayPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
