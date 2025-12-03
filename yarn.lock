@@ -316,6 +316,11 @@
   resolved "https://registry.npmjs.org/@oxc-project/types/-/types-0.93.0.tgz"
   integrity sha512-yNtwmWZIBtJsMr5TEfoZFDxIWV6OdScOpza/f5YxbqUMJk+j6QX3Cf3jgZShGEFYWQJ5j9mJ6jM0tZHu2J9Yrg==
 
+"@rolldown/binding-win32-x64-msvc@1.0.0-beta.41":
+  version "1.0.0-beta.41"
+  resolved "https://registry.npmjs.org/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.0.0-beta.41.tgz"
+  integrity sha512-UlpxKmFdik0Y2VjZrgUCgoYArZJiZllXgIipdBRV1hw6uK45UbQabSTW6Kp6enuOu7vouYWftwhuxfpE8J2JAg==
+
 "@rolldown/pluginutils@1.0.0-beta.41":
   version "1.0.0-beta.41"
   resolved "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.41.tgz"
