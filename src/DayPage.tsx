@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { createSnow, showSnow } from "pure-snow.js";
 import ConfettiComponent from "./Confetti";
 import { activities } from "./activities";
@@ -46,6 +46,8 @@ const DayPage = () => {
     }, 700);
   };
 
+  const navigate = useNavigate();
+
   if (!id) {
     return <div>Invalid day</div>;
   }
@@ -85,11 +87,13 @@ const DayPage = () => {
           }}
         >
           <h1
+            onClick={() => navigate("/")}
             style={{
               fontSize: "8rem", // text-9xl
               opacity: 0.45,
               padding: "1.5rem", // p-6
               position: "absolute",
+              cursor: "pointer",
             }}
           >
             {id}
@@ -228,6 +232,7 @@ function QuestionAnswerScreen({
           textAlign: "center",
           fontSize: "3.75rem",
           paddingTop: "4rem",
+          paddingInline: "2rem",
         }}
       >
         {visibleActivityScreen}
@@ -257,7 +262,6 @@ function QuestionAnswerScreen({
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
-          gap: "10rem",
         }}
       >
         <p
@@ -275,6 +279,7 @@ function QuestionAnswerScreen({
                 fontSize: "3.25rem",
                 // text-4xl
                 fontWeight: "bold",
+                marginTop: "6rem",
               }}
             >
               {row}

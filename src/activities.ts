@@ -3,7 +3,12 @@ export const activities = [
     id: 1,
     joke: {
       q: "What do you call Santa when he stops moving?",
-      a: ["Santa Pause!"],
+      a: [
+        "Who’s there?",
+        "Snow",
+        "Snow who?",
+        "Snow time to waste. It’s almost Christmas!",
+      ],
     },
     riddle: {
       q: "I'm red and white and jolly all around, in December I can always be found. Who am I?",
@@ -33,8 +38,8 @@ export const activities = [
       a: "Eiffel Tower",
     },
     game: {
-      name: "Factle",
-      link: "https://frontofficesports.com/trivia/factle/",
+      name: "Unpixel",
+      link: "",
     },
   },
   {

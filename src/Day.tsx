@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+const disabledIndexes = [9, 10, 15, 16, 21, 22];
+
 const guests = [
   "Adult-Santa-Suit-2024_spygji.png",
   "naughtyelf.webp",
@@ -32,7 +34,7 @@ export function Day({
     : "white";
   const navigate = useNavigate();
 
-  const isDisabled = [9, 10, 15, 16, 21, 22].includes(index + 1);
+  const isDisabled = disabledIndexes.includes(index + 1);
 
   return (
     <div
@@ -43,21 +45,19 @@ export function Day({
       className="day-container"
       key={index}
       style={{
-        pointerEvents: isDisabled || !isCurrentDay ? "none" : "auto",
+        pointerEvents: isDisabled ? "none" : "auto",
         color: color,
         fontSize: "4rem",
         width: "100%",
         aspectRatio: "1/1",
         outline: `1px solid ${color}`,
         borderRadius: "1rem",
-        opacity: [9, 10, 15, 16, 21, 22].includes(index + 1) ? 0 : 1,
+        opacity: disabledIndexes.includes(index + 1) ? 0 : 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         alignSelf: "center",
-        cursor: [9, 10, 15, 16, 21, 22].includes(index + 1)
-          ? "default"
-          : "pointer",
+        cursor: disabledIndexes.includes(index + 1) ? "default" : "pointer",
         // mixBlendMode: "difference",
         backdropFilter: `blur(30px) brightness(10.2) drop-shadow(4px 4px 10px ${
           index % 2 === 0 ? "red" : "blue"
@@ -76,8 +76,11 @@ export function Day({
           alignItems: "center",
           justifyContent: "center",
         }}
-        onClick={() => {
-          navigate(`/${currentDayNumber}`);
+        onClick={(e) => {
+          e.preventDefault();
+          if (!isDisabled) {
+            navigate(`/${currentDayNumber}`);
+          }
         }}
       >
         <p>{currentDayNumber}</p>
