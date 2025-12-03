@@ -7,10 +7,10 @@ import DayPage from "./DayPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HashRouter basename="/xp-advent-calendar">
+    <HashRouter basename="/">
       <Routes>
-        <Route path="/xp-advent-calendar" element={<App />} />
-        <Route path="/xp-advent-calendar/:dayId" element={<DayPage />} />
+        <Route path="/" element={<App />} />
+        <Route path="/:dayId" element={<DayPage />} />
       </Routes>
     </HashRouter>
   </StrictMode>
