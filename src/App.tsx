@@ -72,7 +72,7 @@ function App() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundImage: 'url("./assets/christmas-x-blue-tree.webp")',
+              backgroundImage: 'url("./christmas-x-blue-tree.webp")',
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "contain",
