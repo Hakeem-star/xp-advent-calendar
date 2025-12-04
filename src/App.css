@@ -41,14 +41,15 @@
   color: #888;
 } */
 
-
 @font-face {
-  font-family: 'PWHappyChristmas';
-  src: url('./fonts/PWHappyChristmas.ttf');
+  font-family: "PWHappyChristmas";
+  src: url("./assets/fonts/PWHappyChristmas.ttf");
 }
 
 /* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -72,18 +73,31 @@ body {
 }
 
 /* 6. Improve media defaults */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
 /* 7. Inherit fonts for form controls */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
 /* 8. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
@@ -91,36 +105,38 @@ p, h1, h2, h3, h4, h5, h6 {
 p {
   text-wrap: pretty;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-wrap: balance;
 }
 
 /*
   10. Create a root stacking context
 */
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }
 
-.background{
+.background {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
 body {
   overflow-x: hidden;
-  min-height: 100vh; 
+  min-height: 100vh;
   /* If you want to change the site height you can remove overflow-y */
   /* pure-snow will automatically detect height of body tag */
   overflow-y: hidden;
   color: white;
   min-width: 100vw;
-  font: normal 16px 'PWHappyChristmas';
+  font: normal 16px "PWHappyChristmas";
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-
 }
-
-
-
 
 .snowflake {
   position: absolute;
@@ -134,10 +150,30 @@ body {
 .guest-image {
   transform: translateY(200%);
   transition: transform 0.5s, filter 0.5s;
-  transition-timing-function:linear(0, 0.008 1.1%, 0.034 2.3%, 0.134 4.9%, 0.264 7.3%, 0.683 14.3%, 0.797 16.5%, 0.89 18.6%, 0.967 20.7%, 1.027 22.8%, 1.073 25%, 1.104 27.3%, 1.123 30.6%, 1.119 34.3%, 1.018 49.5%, 0.988 58.6%, 0.985 65.2%, 1 84.5%, 1);
+  transition-timing-function: linear(
+    0,
+    0.008 1.1%,
+    0.034 2.3%,
+    0.134 4.9%,
+    0.264 7.3%,
+    0.683 14.3%,
+    0.797 16.5%,
+    0.89 18.6%,
+    0.967 20.7%,
+    1.027 22.8%,
+    1.073 25%,
+    1.104 27.3%,
+    1.123 30.6%,
+    1.119 34.3%,
+    1.018 49.5%,
+    0.988 58.6%,
+    0.985 65.2%,
+    1 84.5%,
+    1
+  );
 }
 
 .day-container:hover .guest-image {
   filter: drop-shadow(0 0 5px white);
-  transform: translateY(30%)
+  transform: translateY(30%);
 }

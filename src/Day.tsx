@@ -91,7 +91,7 @@ export function Day({
             visibility: isPastCurrentDay ? "hidden" : "visible",
             position: "absolute",
             top: 0,
-            backgroundImage: `url("./guests/${guest}")`,
+            backgroundImage: `url("./assets/guests/${guest}")`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "contain",
